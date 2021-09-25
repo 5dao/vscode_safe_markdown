@@ -1,0 +1,69 @@
+{
+	"publisher": "safemarkdown",
+	"name": "safemarkdown",
+	"displayName": "safe markdown",
+	"description": "markdown auto encryption and decryption",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other",
+		"Notebooks"
+	],
+	"activationEvents": [
+		"onCommand:safe_markdown.decrypt",
+		"onCommand:safe_markdown.encrypt"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"configuration": {
+			"title": "safe_markdown",
+			"properties": {
+				"safe_markdown.pri": {
+					"type": "string",
+					"default": "/path-to-your/pri.pem"
+				},
+				"safe_markdown.pub": {
+					"type": "string",
+					"default": "/path-to-your/pub.pem"
+				}
+			}
+		},
+		"menus": {
+			"editor/context": [
+				{
+					"when": "resourceExtname ==  .md",
+					"command": "safe_markdown.encrypt",
+					"group": "safe_markdown"
+				},
+				{
+					"when": "resourceExtname ==  .md",
+					"command": "safe_markdown.decrypt",
+					"group": "safe_markdown"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "safe_markdown.encrypt",
+				"title": "encrypt (safe_markdown)"
+			},
+			{
+				"command": "safe_markdown.decrypt",
+				"title": "decrypt (safe_markdown)"
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^10.12.21",
+		"eslint": "^5.13.0",
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28"
+	}
+}
