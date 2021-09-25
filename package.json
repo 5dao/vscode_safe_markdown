@@ -3,6 +3,10 @@
 	"name": "safemarkdown",
 	"displayName": "safe markdown",
 	"description": "markdown auto encryption and decryption",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/5dao/vscode_safe_markdown"
+	},
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.30.0"
