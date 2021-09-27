@@ -21,19 +21,6 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"configuration": {
-			"title": "safe_markdown",
-			"properties": {
-				"safe_markdown.pri": {
-					"type": "string",
-					"default": "/path-to-your/pri.pem"
-				},
-				"safe_markdown.pub": {
-					"type": "string",
-					"default": "/path-to-your/pub.pem"
-				}
-			}
-		},
 		"menus": {
 			"editor/context": [
 				{

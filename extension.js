@@ -30,6 +30,12 @@ let template = {
 }
 
 async function safe_markdown_encrypt() {
+	if (process.env.VSCODE_SAFE_MARKDOWN === undefined) {
+		vscode.window.showErrorMessage(`env VSCODE_SAFE_MARKDOWN=/path-to/your_rsa, `);
+		return;
+	}
+	let rsa_pub_path = process.env.VSCODE_SAFE_MARKDOWN + ".pub";
+
 	let activeDoc = vscode.window.activeTextEditor.document;
 	// if txt is encrypt return
 	try {
@@ -42,11 +48,9 @@ async function safe_markdown_encrypt() {
 		//
 	}
 
-	let cfg = vscode.workspace.getConfiguration('safe_markdown');
-
 	let pem = "";
 	try {
-		pem = fs.readFileSync(cfg.get("pub"), { encoding: "ascii" });
+		pem = fs.readFileSync(rsa_pub_path, { encoding: "ascii" });
 	} catch (e) {
 		vscode.window.showErrorMessage(`pub file error`);
 		console.log(e);
@@ -102,6 +106,13 @@ async function safe_markdown_encrypt() {
 }
 
 async function safe_markdown_decrypt() {
+	if (process.env.VSCODE_SAFE_MARKDOWN === undefined) {
+		vscode.window.showErrorMessage(`env VSCODE_SAFE_MARKDOWN=/path-to/your_rsa`);
+		return;
+	}
+	let rsa_prv_path = process.env.VSCODE_SAFE_MARKDOWN;
+
+
 	let activeDoc = vscode.window.activeTextEditor.document;
 
 	let data;
@@ -114,11 +125,11 @@ async function safe_markdown_decrypt() {
 	}
 	// console.log(data.key);
 
-	let cfg = vscode.workspace.getConfiguration('safe_markdown');
+	// let cfg = vscode.workspace.getConfiguration('safe_markdown');
 
 	let pem = "";
 	try {
-		pem = fs.readFileSync(cfg.get("pri"), { encoding: "ascii" });
+		pem = fs.readFileSync(rsa_prv_path, { encoding: "ascii" });
 	} catch (e) {
 		vscode.window.showErrorMessage(`pem file error`);
 		console.log(e);

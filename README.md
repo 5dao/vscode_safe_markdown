@@ -11,10 +11,10 @@ markdown auto encryption and decryption
 
 2. config your vscode
 
-```js
-"safe_markdown.pri": "/path-to-your/rsa_pri.pem",
-"safe_markdown.pub": "/path-to-your/rsa_pub.pem",
-```
+export VSCODE_SAFE_MARKDOWN="/path-to-your/xx_rsa"
+
+> pub key path = ${VSCODE_SAFE_MARKDOWN}+".pub"
+
 
 3. Right-click your markdown file , encrypt or decrypt it.
 
